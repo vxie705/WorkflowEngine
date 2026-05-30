@@ -1,0 +1,10 @@
+^C:\USERS\USER\DESKTOP\ARCHIVOS_C\CODE DEEP\BUILD\CMAKEFILES\75D32C8F3FF4496032714B259498DCF3\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/USER/Desktop/ARCHIVOS_C/CODE DEEP" "-BC:/Users/USER/Desktop/ARCHIVOS_C/CODE DEEP/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/USER/Desktop/ARCHIVOS_C/CODE DEEP/build/WorkflowEngine.slnx"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,10 @@
+^C:\USERS\USER\DESKTOP\ARCHIVOS_C\CODE DEEP\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/USER/Desktop/ARCHIVOS_C/CODE DEEP" "-BC:/Users/USER/Desktop/ARCHIVOS_C/CODE DEEP/build" --check-stamp-file "C:/Users/USER/Desktop/ARCHIVOS_C/CODE DEEP/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

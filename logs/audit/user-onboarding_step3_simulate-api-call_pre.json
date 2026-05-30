@@ -1,0 +1,16 @@
+{
+  "command": "simulate-api-call",
+  "snapshot": {
+    "data_bus": {},
+    "data_packet": {
+      "output_key": "ID_JUAN_PEREZ",
+      "user": "juan_perez"
+    },
+    "phase": "pre-execution",
+    "timestamp": "2026-05-30T22:51:25Z"
+  },
+  "status": "pre",
+  "step": 3,
+  "timestamp": "2026-05-30T22:51:25Z",
+  "workflow": "user-onboarding"
+}

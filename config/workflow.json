@@ -1,0 +1,42 @@
+{
+    "name": "user-onboarding",
+    "description": "Pipeline de registro de usuario: valida, transforma (uppercase + prefijo), y notifica el resultado procesado.",
+    "audit": true,
+    "on_error": "halt",
+    "pipeline": [
+        {
+            "type": "EchoCommand",
+            "instance_name": "echo-initial",
+            "params": {
+                "message": "Starting user onboarding pipeline"
+            },
+            "depends_on": []
+        },
+        {
+            "type": "TransformCommand",
+            "instance_name": "transform-user",
+            "params": {
+                "input_key": "user",
+                "output_key": "output_key",
+                "prefix": "ID_"
+            },
+            "depends_on": []
+        },
+        {
+            "type": "DelayCommand",
+            "instance_name": "simulate-api-call",
+            "params": {
+                "duration_ms": 100
+            },
+            "depends_on": []
+        },
+        {
+            "type": "EchoCommand",
+            "instance_name": "echo-complete",
+            "params": {
+                "message": "Pipeline completed — checking processed output_key"
+            },
+            "depends_on": []
+        }
+    ]
+}

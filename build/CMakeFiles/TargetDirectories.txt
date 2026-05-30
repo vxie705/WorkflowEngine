@@ -1,0 +1,10 @@
+C:/Users/USER/Desktop/ARCHIVOS_C/CODE DEEP/build/CMakeFiles/workflow_engine_core.dir
+C:/Users/USER/Desktop/ARCHIVOS_C/CODE DEEP/build/CMakeFiles/workflow_engine_plugins.dir
+C:/Users/USER/Desktop/ARCHIVOS_C/CODE DEEP/build/CMakeFiles/test_result.dir
+C:/Users/USER/Desktop/ARCHIVOS_C/CODE DEEP/build/CMakeFiles/test_datapacket.dir
+C:/Users/USER/Desktop/ARCHIVOS_C/CODE DEEP/build/CMakeFiles/test_engine.dir
+C:/Users/USER/Desktop/ARCHIVOS_C/CODE DEEP/build/CMakeFiles/test_observability.dir
+C:/Users/USER/Desktop/ARCHIVOS_C/CODE DEEP/build/CMakeFiles/workflow_demo.dir
+C:/Users/USER/Desktop/ARCHIVOS_C/CODE DEEP/build/CMakeFiles/RUN_TESTS.dir
+C:/Users/USER/Desktop/ARCHIVOS_C/CODE DEEP/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/USER/Desktop/ARCHIVOS_C/CODE DEEP/build/CMakeFiles/ZERO_CHECK.dir
