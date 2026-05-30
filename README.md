@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <p align="center">
   <img src="https://img.shields.io/badge/C%2B%2B-20-blue?logo=c%2B%2B" alt="C++20">
   <img src="https://img.shields.io/badge/CMake-3.20%2B-green?logo=cmake" alt="CMake">
@@ -70,39 +69,6 @@ graph TD
 - **C++20** compiler (MSVC 2022+, GCC 11+, Clang 14+)
 - **CMake 3.20+**
 - [nlohmann/json](https://github.com/nlohmann/json) v3.11.3 (included in `external/`)
-=======
-# Workflow Engine — C++20 Modular Task Orchestrator
-
-A highly modular, decoupled, and scalable **Workflow Engine** built in C++20 using the **Pipe & Filter** architecture and **Command Pattern**.
-
-## Architecture
-
-```
-┌─────────────┐     ┌──────────────────┐     ┌──────────────┐
-│ workflow.json │ ──▶ │ WorkflowEngine    │ ──▶ │   ICommand    │
-│  (config)    │     │ (pipe orchestrator)│     │  (filter)     │
-└─────────────┘     └──────────────────┘     └──────────────┘
-                            │                        │
-                            ▼                        ▼
-                     ┌──────────────┐        ┌──────────────┐
-                     │   DataBus     │        │   ILogger     │
-                     │ (shared state) │        │  (logging)    │
-                     └──────────────┘        └──────────────┘
-```
-
-- **Pipe & Filter**: Data flows through an ordered chain of independent command filters.
-- **Command Pattern**: Each task encapsulates its own logic in a common `ICommand` interface.
-- **Dependency Injection**: All dependencies (logger, data bus, config) are injected via constructors.
-- **Configuration-Driven**: Pipelines are defined in JSON — reorder steps without recompilation.
-
-## Quick Start
-
-### Prerequisites
-
-- **C++20** compatible compiler (GCC 11+, Clang 14+, MSVC 2022+)
-- **CMake 3.20+**
-- **nlohmann/json v3.11.3** (included in `external/`)
->>>>>>> e3299e6 (PROYECTO)
 
 ### Build & Run
 
@@ -110,7 +76,6 @@ A highly modular, decoupled, and scalable **Workflow Engine** built in C++20 usi
 # Configure
 cmake -B build
 
-<<<<<<< HEAD
 # Build (Release with full optimizations)
 cmake --build build --config Release
 
@@ -166,75 +131,6 @@ auto val = result.value_or(fallback_packet);
 ```
 
 ### `DataPacket` — Type-Safe Generic Container
-=======
-# Build
-cmake --build build
-
-# Run demo
-./build/workflow_demo
-
-# Run tests
-ctest --test-dir build
-```
-
-### Project Structure
-
-```
-workflow-engine/
-├── include/                 # Public headers (interfaces)
-│   ├── ICommand.hpp        # Base command interface
-│   ├── DataPacket.hpp      # Generic typed key-value container
-│   ├── Result.hpp          # Result<T> error-handling monad
-│   ├── ILogger.hpp         # Logging abstraction
-│   ├── DataBus.hpp         # Inter-command shared state
-│   ├── WorkflowConfig.hpp  # JSON config parser
-│   └── WorkflowEngine.hpp  # Pipeline orchestrator
-├── src/                     # Core implementations
-│   ├── DataPacket.cpp
-│   ├── ConsoleLogger.cpp
-│   ├── WorkflowConfig.cpp
-│   ├── WorkflowEngine.cpp
-│   └── main.cpp
-├── plugins/                 # Command implementations (filters)
-│   ├── EchoCommand.hpp/.cpp
-│   ├── DelayCommand.hpp/.cpp
-│   └── TransformCommand.hpp/.cpp
-├── tests/                   # Unit tests
-│   ├── mocks/
-│   │   ├── MockLogger.hpp
-│   │   └── MockCommand.hpp
-│   ├── test_result.cpp
-│   ├── test_datapacket.cpp
-│   └── test_workflow_engine.cpp
-├── config/
-│   └── workflow.json        # Example workflow configuration
-├── external/
-│   └── nlohmann/
-│       └── json.hpp         # Header-only JSON library
-├── docs/
-│   └── ARCHITECTURE.md      # Detailed architecture docs with Mermaid diagrams
-└── CMakeLists.txt
-```
-
-## Core Concepts
-
-### Result<T> — Type-Safe Error Handling
-
-```cpp
-// Success
-Result<DataPacket> ok = Result<DataPacket>::ok(my_packet);
-ok.is_ok();                      // true
-DataPacket data = ok.value();    // extract value
-
-// Failure (no exceptions)
-Result<DataPacket> err = Result<DataPacket>::error("file not found", 404);
-err.is_error();                  // true
-err.error_message();             // "file not found"
-err.error_code();                // 404
-```
-
-### DataPacket — Generic Data Container
->>>>>>> e3299e6 (PROYECTO)
 
 ```cpp
 DataPacket packet;
@@ -242,7 +138,6 @@ packet.set("user_id", 42);
 packet.set("name", std::string("Alice"));
 packet.set("score", 95.5);
 
-<<<<<<< HEAD
 // Type-safe retrieval via Result<T>
 auto id   = packet.get<int>("user_id");          // Result<int>
 auto name = packet.get<std::string>("name");     // Result<std::string>
@@ -256,42 +151,21 @@ auto restored = DataPacket::from_json(json);
 
 ```cpp
 class MyFilter : public ICommand {
-=======
-// Type-safe retrieval
-auto id = packet.get<int>("user_id");           // Result<int>
-auto name = packet.get<std::string>("name");    // Result<std::string>
-```
-
-### ICommand — Filter Interface
-
-```cpp
-class MyFilter : public ICommand {
-public:
->>>>>>> e3299e6 (PROYECTO)
     std::string name() const override { return "MyFilter"; }
 
     Result<DataPacket> execute(
         const DataPacket& input,
         DataBus& bus,
-<<<<<<< HEAD
         ILogger& logger
     ) override {
         logger.info("Processing...");
         auto output = input;
-=======
-        ILogger& logger) override
-    {
-        logger.info("Processing...");
-        // Your logic here
-        DataPacket output = input;
->>>>>>> e3299e6 (PROYECTO)
         output.set("processed", true);
         return Result<DataPacket>::ok(std::move(output));
     }
 };
 ```
 
-<<<<<<< HEAD
 ### `DataBus` — Inter-Command Communication
 
 Commands **never reference each other**. They communicate through the shared `DataBus`:
@@ -321,15 +195,11 @@ auto entries = mock.entries();  // std::vector<{LogLevel, message}>
 ---
 
 ## ⚙️ Configuration (JSON)
-=======
-### Workflow Configuration (JSON)
->>>>>>> e3299e6 (PROYECTO)
 
 ```json
 {
     "name": "user-onboarding",
     "description": "Process new user registration",
-<<<<<<< HEAD
     "on_error": "halt",
     "audit": true,
     "pipeline": [
@@ -358,17 +228,10 @@ auto entries = mock.entries();  // std::vector<{LogLevel, message}>
             "name": "echo-complete",
             "params": { "message": "Pipeline complete — checking result" }
         }
-=======
-    "pipeline": [
-        { "type": "EchoCommand",    "instance_name": "start",   "params": { "message": "Hello" } },
-        { "type": "TransformCommand", "instance_name": "add-fields", "params": { "transformations": { "status": "active" } } },
-        { "type": "DelayCommand",   "instance_name": "wait",    "params": { "duration_ms": 100 } }
->>>>>>> e3299e6 (PROYECTO)
     ]
 }
 ```
 
-<<<<<<< HEAD
 ### Configuration Reference
 
 | Field | Type | Required | Description |
@@ -489,69 +352,10 @@ cmake --build build --config Release
 .\build\Release\test_datapacket.exe
 .\build\Release\test_engine.exe
 .\build\Release\test_observability.exe
-=======
-### Register and Execute
-
-```cpp
-#include "WorkflowEngine.hpp"
-#include "ConsoleLogger.hpp"  // or use your own ILogger impl
-#include "EchoCommand.hpp"
-#include "DelayCommand.hpp"
-#include "TransformCommand.hpp"
-
-int main() {
-    auto logger = std::make_unique<workflow::ConsoleLogger>();
-    auto bus = std::make_unique<workflow::DataBus>();
-
-    WorkflowEngine engine(std::move(logger), std::move(bus));
-
-    // Register command types
-    engine.register_command<EchoCommand>("EchoCommand");
-    engine.register_command<DelayCommand>("DelayCommand");
-    engine.register_command<TransformCommand>("TransformCommand");
-
-    // Execute from JSON config
-    auto result = engine.execute_from_file("config/workflow.json");
-
-    if (result.is_ok()) {
-        std::cout << "Pipeline completed successfully!" << std::endl;
-        DataPacket output = result.value();
-        // Process output...
-        return 0;
-    } else {
-        std::cerr << "Pipeline failed: " << result.error_message() << std::endl;
-        return 1;
-    }
-}
-```
-
-## Key Design Decisions
-
-| Decision | Rationale |
-|----------|-----------|
-| `Result<T>` over exceptions | Explicit error checking at every pipeline step; no hidden control flow |
-| `std::unique_ptr` everywhere | Compile-time ownership enforcement; no shared_ptr overhead |
-| `DataBus` as shared context | Commands never reference each other; zero coupling |
-| `ILogger` injection | Testable — use `MockLogger` to assert log output; no `std::cout` in production |
-| JSON config | Pipelines configurable without recompilation |
-| Factory registry | Plugins self-register; no central command list to maintain |
-
-## Running Tests
-
-```bash
-# Build and run all tests
-cmake -B build && cmake --build build && ctest --test-dir build --output-on-failure
-
-# Or run individual tests
-./build/test_result
-./build/test_datapacket
-./build/test_engine
->>>>>>> e3299e6 (PROYECTO)
 ```
 
 ### Test Coverage
 
-<<<<<<< HEAD
 | Test File | Tests | Coverage |
 |-----------|-------|----------|
 | `test_result.cpp` | 9 | `Result<T>` creation, `.value()`, `value_or()`, error propagation, copy/move semantics, `Result<void>` |
@@ -642,26 +446,3 @@ This project is licensed under the [MIT License](LICENSE) — free for personal 
 <p align="center">
   <sub>Built with ❤️ using C++20 · CMake · nlohmann/json</sub>
 </p>
-=======
-| Test File | What It Validates |
-|-----------|-------------------|
-| `test_result.cpp` | `Result<T>` ok/error creation, value access, error propagation |
-| `test_datapacket.cpp` | DataPacket set/get, type safety, size tracking, missing key handling |
-| `test_workflow_engine.cpp` | Pipeline execution, error halting, data flow, DataBus inter-command state, unknown type handling |
-
-## Adding a New Command
-
-1. Create `plugins/YourCommand.hpp` and `plugins/YourCommand.cpp`
-2. Inherit from `ICommand`
-3. Implement `name()` and `execute()`
-4. Register with `engine.register_command<YourCommand>("YourCommand")`
-5. Add to JSON config `{ "type": "YourCommand", "instance_name": "...", "params": {...} }`
-
-## Documentation
-
-- **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** — Full architecture with Mermaid diagrams, data flow sequences, and design rationale.
-
-## License
-
-MIT
->>>>>>> e3299e6 (PROYECTO)
