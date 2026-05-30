@@ -1,0 +1,20 @@
+# Excluir carpetas de compilación
+build/
+bin/
+out/
+
+# Excluir archivos de configuración de IDEs
+.vscode/
+.vs/
+.idea/
+
+# Excluir binarios y objetos
+*.exe
+*.o
+*.obj
+*.so
+*.dylib
+*.a
+
+# Excluir archivos de log o auditoría si los vas a generar en local
+logs/
