@@ -444,5 +444,4 @@ This project is licensed under the [MIT License](LICENSE) — free for personal 
 ---
 
 <p align="center">
-  <sub>Built with ❤️ using C++20 · CMake · nlohmann/json</sub>
 </p>
